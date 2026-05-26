@@ -1303,7 +1303,9 @@ body::after {
 
   // Re-render when storage changes from another tab (or our bridged parent).
   window.addEventListener('storage', () => {
-    loadToday(); loadTomorrow(); renderStreak();
+    processStreak();
+    loadToday(); loadTomorrow();
+    renderTodayHeader(); renderStreak(); updateDayRing();
   });
 })();
 </script>
