@@ -18,7 +18,7 @@
 const CONFIG = {
   appTitle: "Progressive Overload Coach",
 
-  units: "kg",
+  units: "lb",
 
   gyms: [
     { id: "comm", name: "Gym" }
@@ -52,45 +52,45 @@ const CONFIG = {
 
   defaultExercises: [
     // Mon — Legs (Functional Strength)
-    { name: "Squat",                   gym: "comm", day: "legs-a",     repMin: 8,  repMax: 10, step: 2.5, startWeight: 60 },
-    { name: "Walking Lunges",          gym: "comm", day: "legs-a",     repMin: 10, repMax: 10, step: 2.5, startWeight: 20 },
-    { name: "Hip Adduction",           gym: "comm", day: "legs-a",     repMin: 10, repMax: 12, step: 2.5, startWeight: 40 },
-    { name: "Hip Abduction",           gym: "comm", day: "legs-a",     repMin: 10, repMax: 12, step: 2.5, startWeight: 35 },
+    { name: "Squat",                   gym: "comm", day: "legs-a",     repMin: 8,  repMax: 10, step: 5, startWeight: 135 },
+    { name: "Walking Lunges",          gym: "comm", day: "legs-a",     repMin: 10, repMax: 10, step: 5, startWeight: 45  },
+    { name: "Hip Adduction",           gym: "comm", day: "legs-a",     repMin: 10, repMax: 12, step: 5, startWeight: 90  },
+    { name: "Hip Abduction",           gym: "comm", day: "legs-a",     repMin: 10, repMax: 12, step: 5, startWeight: 75  },
 
     // Tue — Chest / Back
-    { name: "Pull-Ups",                gym: "comm", day: "chest-back", repMin: 10, repMax: 12, step: 1,   startWeight: 0,  bw: true },
-    { name: "Flat Bench",              gym: "comm", day: "chest-back", repMin: 8,  repMax: 10, step: 2.5, startWeight: 60 },
-    { name: "Seated Row",              gym: "comm", day: "chest-back", repMin: 10, repMax: 12, step: 2.5, startWeight: 50 },
-    { name: "Incline Smith Press",     gym: "comm", day: "chest-back", repMin: 10, repMax: 12, step: 2.5, startWeight: 40 },
-    { name: "Cable Pullovers",         gym: "comm", day: "chest-back", repMin: 8,  repMax: 12, step: 2.5, startWeight: 25 },
-    { name: "Dips",                    gym: "comm", day: "chest-back", repMin: 15, repMax: 15, step: 1,   startWeight: 0,  bw: true },
+    { name: "Pull-Ups",                gym: "comm", day: "chest-back", repMin: 10, repMax: 12, step: 5, startWeight: 0,   bw: true },
+    { name: "Flat Bench",              gym: "comm", day: "chest-back", repMin: 8,  repMax: 10, step: 5, startWeight: 135 },
+    { name: "Seated Row",              gym: "comm", day: "chest-back", repMin: 10, repMax: 12, step: 5, startWeight: 110 },
+    { name: "Incline Smith Press",     gym: "comm", day: "chest-back", repMin: 10, repMax: 12, step: 5, startWeight: 90  },
+    { name: "Cable Pullovers",         gym: "comm", day: "chest-back", repMin: 8,  repMax: 12, step: 5, startWeight: 55  },
+    { name: "Dips",                    gym: "comm", day: "chest-back", repMin: 15, repMax: 15, step: 5, startWeight: 0,   bw: true },
 
     // Wed — Shoulders / Arms
-    { name: "DB Shoulder Press",       gym: "comm", day: "shoulders",  repMin: 8,  repMax: 12, step: 2,   startWeight: 16 },
-    { name: "Hammer Curls",            gym: "comm", day: "shoulders",  repMin: 10, repMax: 12, step: 2,   startWeight: 14 },
-    { name: "V-Bar Pushdowns",         gym: "comm", day: "shoulders",  repMin: 8,  repMax: 15, step: 2.5, startWeight: 30 },
-    { name: "Lateral Raises",          gym: "comm", day: "shoulders",  repMin: 12, repMax: 15, step: 2,   startWeight: 10 },
-    { name: "Incline DB Curls",        gym: "comm", day: "shoulders",  repMin: 10, repMax: 12, step: 2,   startWeight: 12 },
+    { name: "DB Shoulder Press",       gym: "comm", day: "shoulders",  repMin: 8,  repMax: 12, step: 5, startWeight: 35  },
+    { name: "Hammer Curls",            gym: "comm", day: "shoulders",  repMin: 10, repMax: 12, step: 5, startWeight: 30  },
+    { name: "V-Bar Pushdowns",         gym: "comm", day: "shoulders",  repMin: 8,  repMax: 15, step: 5, startWeight: 65  },
+    { name: "Lateral Raises",          gym: "comm", day: "shoulders",  repMin: 12, repMax: 15, step: 5, startWeight: 20  },
+    { name: "Incline DB Curls",        gym: "comm", day: "shoulders",  repMin: 10, repMax: 12, step: 5, startWeight: 25  },
 
     // Thu — Legs (Hypertrophy)
-    { name: "Leg Extensions",          gym: "comm", day: "legs-b",     repMin: 12, repMax: 15, step: 5,   startWeight: 40 },
-    { name: "Leg Curls",               gym: "comm", day: "legs-b",     repMin: 12, repMax: 15, step: 5,   startWeight: 35 },
-    { name: "Barbell Walking Lunges",  gym: "comm", day: "legs-b",     repMin: 10, repMax: 10, step: 2.5, startWeight: 20 },
-    { name: "Hip Adduction",           gym: "comm", day: "legs-b",     repMin: 10, repMax: 12, step: 2.5, startWeight: 40 },
-    { name: "Hip Abduction",           gym: "comm", day: "legs-b",     repMin: 10, repMax: 12, step: 2.5, startWeight: 35 },
+    { name: "Leg Extensions",          gym: "comm", day: "legs-b",     repMin: 12, repMax: 15, step: 10, startWeight: 90 },
+    { name: "Leg Curls",               gym: "comm", day: "legs-b",     repMin: 12, repMax: 15, step: 10, startWeight: 80 },
+    { name: "Barbell Walking Lunges",  gym: "comm", day: "legs-b",     repMin: 10, repMax: 10, step: 5,  startWeight: 45 },
+    { name: "Hip Adduction",           gym: "comm", day: "legs-b",     repMin: 10, repMax: 12, step: 5,  startWeight: 90 },
+    { name: "Hip Abduction",           gym: "comm", day: "legs-b",     repMin: 10, repMax: 12, step: 5,  startWeight: 75 },
 
     // Fri — Chest / Triceps (Strength)
-    { name: "Flat Bench",              gym: "comm", day: "chest-tri",  repMin: 4,  repMax: 6,  step: 2.5, startWeight: 70 },
-    { name: "Incline DB Press",        gym: "comm", day: "chest-tri",  repMin: 8,  repMax: 10, step: 2,   startWeight: 22 },
-    { name: "Machine Flyes",           gym: "comm", day: "chest-tri",  repMin: 10, repMax: 12, step: 2.5, startWeight: 30 },
-    { name: "Straight Bar Pushdowns",  gym: "comm", day: "chest-tri",  repMin: 8,  repMax: 15, step: 2.5, startWeight: 30 },
+    { name: "Flat Bench",              gym: "comm", day: "chest-tri",  repMin: 4,  repMax: 6,  step: 5, startWeight: 155 },
+    { name: "Incline DB Press",        gym: "comm", day: "chest-tri",  repMin: 8,  repMax: 10, step: 5, startWeight: 50  },
+    { name: "Machine Flyes",           gym: "comm", day: "chest-tri",  repMin: 10, repMax: 12, step: 5, startWeight: 65  },
+    { name: "Straight Bar Pushdowns",  gym: "comm", day: "chest-tri",  repMin: 8,  repMax: 15, step: 5, startWeight: 65  },
 
     // Sat — Back / Biceps
-    { name: "Lat Pulldown",            gym: "comm", day: "back-bi",    repMin: 10, repMax: 12, step: 2.5, startWeight: 50 },
-    { name: "Seated Row",              gym: "comm", day: "back-bi",    repMin: 10, repMax: 12, step: 2.5, startWeight: 50 },
-    { name: "Chest Supported DB Rows", gym: "comm", day: "back-bi",    repMin: 8,  repMax: 10, step: 2,   startWeight: 18 },
-    { name: "Incline DB Curls",        gym: "comm", day: "back-bi",    repMin: 10, repMax: 12, step: 2,   startWeight: 12 },
-    { name: "EZ Bar Curls",            gym: "comm", day: "back-bi",    repMin: 8,  repMax: 10, step: 2.5, startWeight: 30 },
+    { name: "Lat Pulldown",            gym: "comm", day: "back-bi",    repMin: 10, repMax: 12, step: 5, startWeight: 110 },
+    { name: "Seated Row",              gym: "comm", day: "back-bi",    repMin: 10, repMax: 12, step: 5, startWeight: 110 },
+    { name: "Chest Supported DB Rows", gym: "comm", day: "back-bi",    repMin: 8,  repMax: 10, step: 5, startWeight: 40  },
+    { name: "Incline DB Curls",        gym: "comm", day: "back-bi",    repMin: 10, repMax: 12, step: 5, startWeight: 25  },
+    { name: "EZ Bar Curls",            gym: "comm", day: "back-bi",    repMin: 8,  repMax: 10, step: 5, startWeight: 65  },
   ]
 };
 </script>
@@ -1758,7 +1758,7 @@ img, video, canvas, svg { max-width: 100%; }
   // device has its own copy. Export JSON from settings if you
   // want to back up or move to another device.
   // ============================================================
-  const LS_KEY = 'po_coach_v2';
+  const LS_KEY = 'po_coach_v3';
 
   function buildDefaultExercises() {
     return CONFIG.defaultExercises.map((e, i) => Object.assign({
