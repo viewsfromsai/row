@@ -675,6 +675,52 @@ img, video, canvas, svg { max-width: 100%; }
 }
 .rot-row .rot-today-btn:hover { color: var(--good); border-color: rgba(110,231,183,0.30); }
 
+/* ---- My Split reference card ---- */
+.split-tabs {
+  display: flex; gap: 3px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 4px;
+  margin-bottom: 14px;
+}
+.split-tab {
+  flex: 1; padding: 8px 4px; border: none; background: transparent;
+  color: var(--text-3); border-radius: 8px;
+  font-family: inherit; font-size: 11.5px; font-weight: 600;
+  cursor: pointer; transition: background 0.15s, color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+.split-tab.today::after {
+  content: ''; position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 4px; border-radius: 50%; background: var(--good);
+}
+.split-tab:hover:not(.active) { color: var(--text-2); background: rgba(255,255,255,0.04); }
+.split-tab.active {
+  background: linear-gradient(180deg,#fff 0%,#e8e5dd 100%);
+  color: #0a0a0b;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 4px 12px rgba(0,0,0,0.35);
+}
+.split-day-header { margin-bottom: 12px; }
+.split-day-name { font-size: 13px; font-weight: 700; color: var(--text-1); margin-bottom: 3px; }
+.split-day-focus {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--good);
+  font-family: var(--font-mono);
+}
+.split-ex-list { display: flex; flex-direction: column; gap: 5px; }
+.split-ex {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.split-ex-name { flex: 1; font-size: 13px; font-weight: 600; color: var(--text-1); }
+.split-ex-meta { font-size: 11px; color: var(--text-3); font-family: var(--font-mono); white-space: nowrap; }
+.split-ex.cardio { background: rgba(110,231,183,0.04); border-color: rgba(110,231,183,0.10); }
+.split-ex.cardio .split-ex-name { color: var(--good); font-weight: 500; }
+
 @media (max-width: 480px) {
   /* === Mobile / iPhone polish === */
   .po-shell { padding: 14px max(10px, env(safe-area-inset-right)) calc(32px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)); }
@@ -1581,6 +1627,19 @@ img, video, canvas, svg { max-width: 100%; }
       </button>
       <div class="po-tw-past-body" id="poTwPastBody" style="display:none"></div>
     </div>
+  </div>
+
+  <div class="card">
+    <div class="po-sub-title">My Split</div>
+    <div class="split-tabs" id="splitTabs">
+      <button class="split-tab" data-i="0">Mon</button>
+      <button class="split-tab" data-i="1">Tue</button>
+      <button class="split-tab" data-i="2">Wed</button>
+      <button class="split-tab" data-i="3">Thu</button>
+      <button class="split-tab" data-i="4">Fri</button>
+      <button class="split-tab" data-i="5">Sat</button>
+    </div>
+    <div id="splitContent"></div>
   </div>
 </div>
 
@@ -3507,6 +3566,110 @@ img, video, canvas, svg { max-width: 100%; }
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) pcFlushPushOnUnload();
   });
+})();
+</script>
+<script>
+(function () {
+  const SPLIT = [
+    {
+      day: 'Monday', focus: 'Legs — Functional Strength',
+      exercises: [
+        { name: 'Squat',                    meta: '3×8-10 @ 60-70% max' },
+        { name: 'Walking Lunges (Barbell)', meta: '3×10/leg  (squat ÷ 3.5)' },
+        { name: 'Hip Adduction',            meta: '3×10-12' },
+        { name: 'Hip Abduction',            meta: '3×10-12' },
+        { name: 'Stairmaster',              meta: '35+ min  Zone 2', cardio: true },
+      ]
+    },
+    {
+      day: 'Tuesday', focus: 'Chest / Back',
+      exercises: [
+        { name: 'Pull-Ups',             meta: '3×10-12' },
+        { name: 'Flat Bench',           meta: '2×8-10 @ 70-80% max' },
+        { name: 'Seated Row',           meta: '3×10-12' },
+        { name: 'Incline Smith Press',  meta: '2×10-12' },
+        { name: 'Cable Pullovers',      meta: '2×8-12' },
+        { name: 'Dips',                 meta: '3×15' },
+        { name: 'Cardio',               meta: '35+ min  Zone 2', cardio: true },
+      ]
+    },
+    {
+      day: 'Wednesday', focus: 'Shoulders / Arms',
+      exercises: [
+        { name: 'DB Shoulder Press',      meta: '3×8-12  (dropset last)' },
+        { name: 'Hammer Curls',           meta: '3×10-12  (dropset last)' },
+        { name: 'V-Bar Pushdowns',        meta: '2×failure  (dropsets)' },
+        { name: 'Lateral Raises',         meta: '3×12-15' },
+        { name: 'Incline DB Curls',       meta: '3×10-12' },
+        { name: 'Cardio',                 meta: '35+ min  Zone 2', cardio: true },
+      ]
+    },
+    {
+      day: 'Thursday', focus: 'Legs — Hypertrophy',
+      exercises: [
+        { name: 'Leg Extensions',          meta: '3×12-15' },
+        { name: 'Leg Curls',               meta: '3×12-15' },
+        { name: 'Barbell Walking Lunges',  meta: '3×10/leg' },
+        { name: 'Hip Adduction',           meta: '3×10-12' },
+        { name: 'Hip Abduction',           meta: '3×10-12' },
+        { name: 'Cardio',                  meta: '35+ min  Zone 2', cardio: true },
+      ]
+    },
+    {
+      day: 'Friday', focus: 'Chest / Triceps — Strength',
+      exercises: [
+        { name: 'Flat Bench',              meta: '2×4-6 @ 85-90% max' },
+        { name: 'Incline DB Press',        meta: '3×8-10' },
+        { name: 'Machine Flyes',           meta: '3×10-12' },
+        { name: 'Straight Bar Pushdowns',  meta: '2×failure  (dropsets)' },
+        { name: 'Cardio',                  meta: '35+ min  Zone 2', cardio: true },
+      ]
+    },
+    {
+      day: 'Saturday', focus: 'Back / Biceps',
+      exercises: [
+        { name: 'Lat Pulldown',              meta: '3×10-12' },
+        { name: 'Seated Row',               meta: '3×10-12' },
+        { name: 'Chest Supported DB Rows',  meta: '3×8-10' },
+        { name: 'Incline DB Curls',         meta: '3×10-12' },
+        { name: 'EZ Bar Curls',             meta: '2×8-10  (dropset last)' },
+        { name: 'Cardio',                   meta: '35+ min  Zone 2', cardio: true },
+      ]
+    },
+  ];
+
+  const tabs = document.querySelectorAll('.split-tab');
+  const content = document.getElementById('splitContent');
+  const dayMap = { 1: 0, 2: 1, 3: 2, 4: 3, 5: 4, 6: 5 };
+  const todayIdx = dayMap[new Date().getDay()];
+
+  tabs.forEach((tab, i) => {
+    if (i === todayIdx) tab.classList.add('today');
+  });
+
+  function render(idx) {
+    tabs.forEach((t, i) => t.classList.toggle('active', i === idx));
+    const d = SPLIT[idx];
+    content.innerHTML =
+      '<div class="split-day-header">' +
+        '<div class="split-day-name">' + d.day + '</div>' +
+        '<div class="split-day-focus">' + d.focus + '</div>' +
+      '</div>' +
+      '<div class="split-ex-list">' +
+        d.exercises.map(function (e) {
+          return '<div class="split-ex' + (e.cardio ? ' cardio' : '') + '">' +
+            '<span class="split-ex-name">' + e.name + '</span>' +
+            '<span class="split-ex-meta">' + e.meta + '</span>' +
+          '</div>';
+        }).join('') +
+      '</div>';
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { render(i); });
+  });
+
+  render(todayIdx != null ? todayIdx : 0);
 })();
 </script>
 
