@@ -3446,6 +3446,7 @@ img, video, canvas, svg { max-width: 100%; }
     if (!remote || typeof remote !== 'object') return false;
     pcSuppressSync = true;
     let changed = false;
+    let hasLocalUnsynced = false;
     try {
       for (const k of PC_SYNCED_KEYS) {
         if (k === 'po_coach_photos') {
@@ -3466,13 +3467,18 @@ img, video, canvas, svg { max-width: 100%; }
           const local = localStorage.getItem(k);
           if (local !== incoming) { try { _pcOrigSet(k, incoming); changed = true; } catch {} }
         } else if (localStorage.getItem(k) != null) {
-          try { _pcOrigRemove(k); changed = true; } catch {}
+          // Local has data that remote doesn't — preserve it and push it up.
+          // NEVER delete local data just because remote is missing a key;
+          // that only causes data loss when the sync key changes (e.g. v1→v3).
+          hasLocalUnsynced = true;
         }
       }
     } finally {
       pcSuppressSync = false;
     }
     if (changed) { try { pcRerender(); } catch (e) {} }
+    // If local has data that remote doesn't know about, push it to Supabase.
+    if (hasLocalUnsynced) { setTimeout(pcSchedulePush, 200); }
     return changed;
   }
 
