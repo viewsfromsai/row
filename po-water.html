@@ -16,9 +16,12 @@ Contact: rowan.wisere@gmail.com
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#080d0a">
+<meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
 <title>Water Coach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="sync.js" defer></script>
 <script src="topbar.js" defer></script>
@@ -61,26 +64,27 @@ const CONFIG = {
 
 <style>
 :root {
-  --bg: #080d0a;
-  --bg-card: #0f1610;
-  --text-1: #dff0e5;
-  --text-2: rgba(223,240,229,0.60);
-  --text-3: rgba(223,240,229,0.40);
-  --text-4: rgba(223,240,229,0.24);
-  --border: rgba(62,207,142,0.12);
-  --border-strong: rgba(62,207,142,0.20);
-  --good: #3ecf8e;
+  --bg: #000000;
+  --bg-card: #0d0d0d;
+  --text-1: #ffffff;
+  --text-2: rgba(255,255,255,0.60);
+  --text-3: rgba(255,255,255,0.40);
+  --text-4: rgba(255,255,255,0.24);
+  --border: rgba(0,212,163,0.12);
+  --border-strong: rgba(0,212,163,0.20);
+  --good: #00d4a3;
   --warn: #f59e0b;
   --bad: #f87171;
   --info: #38bdf8;
   --font: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-display: "Cormorant Garamond", Georgia, serif;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html, body {
   margin: 0; padding: 0;
-  background: #080d0a;
+  background: #000000;
   color: var(--text-1);
   font-family: var(--font);
   -webkit-font-smoothing: antialiased;
@@ -149,7 +153,7 @@ html, body {
   display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px;
 }
 .water-num {
-  font-size: 56px; font-weight: 700; letter-spacing: -0.03em;
+  font-family: var(--font-display); font-size: 64px; font-weight: 300; letter-spacing: -0.01em;
   line-height: 1; font-variant-numeric: tabular-nums;
 }
 .water-target {
@@ -203,8 +207,8 @@ html, body {
 .water-minus-btn:hover { background: rgba(5,150,105,0.12); }
 .water-minus-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 .water-plus-btn {
-  background: linear-gradient(180deg, #3ecf8e 0%, #2bb37a 100%);
-  color: #080d0a; border: 1px solid rgba(62,207,142,0.45); border-radius: 4px;
+  background: linear-gradient(180deg, #00d4a3 0%, #00b88e 100%);
+  color: #000000; border: 1px solid rgba(0,212,163,0.45); border-radius: 4px;
   font-family: inherit; font-size: 16px; font-weight: 700;
   letter-spacing: 0.06em; text-transform: uppercase;
   cursor: pointer; padding: 16px;
@@ -212,7 +216,7 @@ html, body {
   -webkit-tap-highlight-color: transparent;
   box-shadow: 0 4px 14px rgba(5,150,105,0.22);
 }
-.water-plus-btn:hover { transform: translateY(-1px); filter: brightness(1.08); box-shadow: 0 6px 20px rgba(62,207,142,0.38); }
+.water-plus-btn:hover { transform: translateY(-1px); filter: brightness(1.08); box-shadow: 0 6px 20px rgba(0,212,163,0.38); }
 .water-plus-btn:active { transform: scale(0.98); }
 
 .water-helper {
@@ -348,8 +352,8 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 .seg button.active {
-  background: linear-gradient(180deg, #3ecf8e 0%, #2bb37a 100%);
-  color: #080d0a; font-weight: 800;
+  background: linear-gradient(180deg, #00d4a3 0%, #00b88e 100%);
+  color: #000000; font-weight: 800;
 }
 
 /* ----- Stimulant search ----- */
@@ -432,9 +436,9 @@ html, body {
 /* ----- Buttons ----- */
 .btn-primary {
   width: 100%; padding: 13px;
-  border: 1px solid rgba(62,207,142,0.45);
-  background: linear-gradient(180deg, #3ecf8e 0%, #2bb37a 100%);
-  color: #080d0a; border-radius: 4px;
+  border: 1px solid rgba(0,212,163,0.45);
+  background: linear-gradient(180deg, #00d4a3 0%, #00b88e 100%);
+  color: #000000; border-radius: 4px;
   font-family: inherit; font-size: 14px; font-weight: 700;
   letter-spacing: 0.06em; text-transform: uppercase;
   cursor: pointer;
